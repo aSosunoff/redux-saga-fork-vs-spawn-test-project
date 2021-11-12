@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import { peopleReducer } from "./peopleReducer";
+import { peopleReducer } from "../../../feature/people/reducer";
 
 export const createRootReducer = () =>
   combineReducers({
