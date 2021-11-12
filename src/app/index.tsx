@@ -5,18 +5,14 @@ export const App: React.FC = () => {
   const { dispatchPeopleRequest } = useDispatchPeopleRequest();
 
   return (
-    <>
-      <div>
-        <button
-          onClick={() => {
-            dispatchPeopleRequest(1, "");
-          }}
-        >
-          Load Planets
-        </button>
-
-        <button onClick={() => {}}>Load All Planets</button>
-      </div>
-    </>
+    <div>
+      <button
+        onClick={() => {
+          dispatchPeopleRequest(1, "");
+        }}
+      >
+        Load People
+      </button>
+    </div>
   );
 };
