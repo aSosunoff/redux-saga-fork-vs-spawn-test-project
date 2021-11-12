@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { v4 } from "uuid";
+import { useDispatchError } from "../feature/error/use-dispatch-error";
 import { useDispatchPeopleAdd } from "../feature/people/dispatch/use-dispatch-people-add";
 import { useDispatchPeopleDelete } from "../feature/people/dispatch/use-dispatch-people-delete";
 import { useDispatchPeopleRequest } from "../feature/people/dispatch/use-dispatch-people-request";
@@ -16,29 +17,29 @@ export const App: React.FC = () => {
 
   const { pageData, loading } = useSelector(selectorPeople);
 
+  const { dispatchError } = useDispatchError();
+
   return (
     <>
-      <div>
-        <button
-          onClick={() => {
-            dispatchPeopleRequest(1, "");
-          }}
-        >
-          Load People
-        </button>
-      </div>
+      <button
+        onClick={() => {
+          dispatchPeopleRequest(1, "");
+        }}
+      >
+        Load People
+      </button>
 
-      <div>
-        <button
-          onClick={() => {
-            const uniq = v4();
+      <button
+        onClick={() => {
+          const uniq = v4();
 
-            dispatchPeopleAdd({ name: uniq, url: uniq } as Person);
-          }}
-        >
-          App Person
-        </button>
-      </div>
+          dispatchPeopleAdd({ name: uniq, url: uniq } as Person);
+        }}
+      >
+        App Person
+      </button>
+
+      <button onClick={dispatchError}>Error</button>
 
       {loading ? <>Loading...</> : null}
 
