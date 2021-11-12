@@ -1,6 +1,6 @@
 import { PagesType } from "../../app/interfaces/page-type";
 import { Person } from "../../app/interfaces/person";
-import { CreateAction } from "../../app/redux/reducers/helpers";
+import { ActionPayload, CreateAction } from "../../app/redux/reducers/helpers";
 
 export const PEOPLE_REQUEST = "PEOPLE_REQUEST";
 export type dispatchPeopleRequest = typeof PEOPLE_REQUEST;
@@ -14,13 +14,13 @@ export const PEOPLE_FAILURE = "PEOPLE_FAILURE";
 export type dispatchPeopleFailure = typeof PEOPLE_FAILURE;
 export type ActionPeoleFailure = CreateAction<ActionPeople, dispatchPeopleFailure>;
 
-export const PEOPLE_DELETE = "PEOPLE_DELETE";
-export type dispatchPeopleDelete = typeof PEOPLE_DELETE;
-export type ActionPeoleDelete = CreateAction<ActionPeople, dispatchPeopleDelete>;
+export const PEOPLE_DELETE = (id: string) => `PEOPLE_DELETE_${id}`;
+export type dispatchPeopleDelete = ReturnType<typeof PEOPLE_DELETE>;
+export type ActionPeoleDelete = ActionPayload<dispatchPeopleDelete>;
 
 export const PEOPLE_ADD = "PEOPLE_ADD";
 export type dispatchPeopleAdd = typeof PEOPLE_ADD;
-export type ActionPeoleAdd = CreateAction<ActionPeople, dispatchPeopleAdd>;
+export type ActionPeoleAdd = ActionPayload<dispatchPeopleAdd, Person>;
 
 export type ActionPeople = {
   [PEOPLE_REQUEST]: {
@@ -33,8 +33,4 @@ export type ActionPeople = {
   [PEOPLE_SUCCESS]: { payload: PagesType<Person> };
 
   [PEOPLE_FAILURE]: { payload: any };
-
-  [PEOPLE_DELETE]: { payload: Person };
-
-  [PEOPLE_ADD]: { payload: Person };
 };
