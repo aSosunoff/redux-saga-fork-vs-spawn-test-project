@@ -6,7 +6,21 @@ import { createRootReducer } from "./reducers";
 import { rootSaga } from "./sagas";
 
 export const configureStore = () => {
-  const sagaMiddleware = createSagaMiddleware();
+  const sagaMiddleware = createSagaMiddleware({
+    sagaMonitor: {
+      /* actionDispatched: (action) => {
+        console.log(action);
+      }, */
+
+      /* rootSagaStarted: (...arg) => {
+        console.log("arg", arg);
+      }, */
+
+      /* effectTriggered: (...arg) => {
+        console.log(arg);
+      }, */
+    },
+  });
 
   const enhancer = applyMiddleware(sagaMiddleware);
 
