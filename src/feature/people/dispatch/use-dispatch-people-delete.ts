@@ -1,22 +1,20 @@
 import { Dispatch, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { ActionPeopleRequest, PEOPLE_REQUEST } from "../action";
+import { Person } from "../../../app/interfaces/person";
+import { ActionPeoleDelete, PEOPLE_DELETE } from "../action";
 
 export const useDispatchPeopleDelete = () => {
-  const dispatch = useDispatch<Dispatch<ActionPeopleRequest>>();
+  const dispatch = useDispatch<Dispatch<ActionPeoleDelete>>();
 
-  const dispatchPeopleRequest = useCallback(
-    (page: number, search: string) => {
+  const dispatchPeopleDelete = useCallback(
+    (person: Person) => {
       dispatch({
-        type: PEOPLE_REQUEST,
-        payload: {
-          page,
-          search,
-        },
+        type: PEOPLE_DELETE,
+        payload: person,
       });
     },
     [dispatch]
   );
 
-  return { dispatchPeopleRequest };
+  return { dispatchPeopleDelete };
 };
