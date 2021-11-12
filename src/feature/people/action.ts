@@ -26,3 +26,13 @@ export type ActionPeople = {
 
   [PEOPLE_FAILURE]: { payload: any };
 };
+
+/* type ActionPeople = {
+  SET_PEOPLE: { payload: PagesType<Person> };
+  ADD_PEOPLE: { payload: Person };
+  DELETE_PEOPLE: { payload: Person };
+}; */
+
+/* export type ActionSetPeople = CreateAction<ActionPeople, "SET_PEOPLE">;
+export type ActionAddPeople = CreateAction<ActionPeople, "ADD_PEOPLE">;
+export type ActionDeletePeople = CreateAction<ActionPeople, "DELETE_PEOPLE">; */
