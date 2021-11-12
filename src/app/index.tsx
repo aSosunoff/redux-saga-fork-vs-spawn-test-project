@@ -1,13 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { v4 } from "uuid";
+import { useDispatchPeopleAdd } from "../feature/people/dispatch/use-dispatch-people-add";
 import { useDispatchPeopleDelete } from "../feature/people/dispatch/use-dispatch-people-delete";
 import { useDispatchPeopleRequest } from "../feature/people/dispatch/use-dispatch-people-request";
 import { selectorPeople } from "../feature/people/selectors/selector-people";
+import { Person } from "./interfaces/person";
 
 export const App: React.FC = () => {
   const { dispatchPeopleRequest } = useDispatchPeopleRequest();
 
   const { dispatchPeopleDelete } = useDispatchPeopleDelete();
+
+  const { dispatchPeopleAdd } = useDispatchPeopleAdd();
 
   const { pageData, page, pageSize, loading, search } = useSelector(selectorPeople);
 
@@ -20,6 +25,18 @@ export const App: React.FC = () => {
           }}
         >
           Load People
+        </button>
+      </div>
+
+      <div>
+        <button
+          onClick={() => {
+            const uniq = v4();
+
+            dispatchPeopleAdd({ name: uniq, url: uniq } as Person);
+          }}
+        >
+          App Person
         </button>
       </div>
 
