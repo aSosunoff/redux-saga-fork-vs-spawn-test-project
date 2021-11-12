@@ -9,6 +9,7 @@ import {
   ActionPeople,
   ActionPeopleRequest,
   ActionPeopleSuccess,
+  PEOPLE_ADD,
   PEOPLE_DELETE,
   PEOPLE_FAILURE,
   PEOPLE_REQUEST,
@@ -69,7 +70,7 @@ const handlers: Handler<State, ActionPeople> = {
         }
       : state,
 
-  /* ADD_PEOPLE: (state, action) =>
+  [PEOPLE_ADD]: (state, action) =>
     state.pageData
       ? {
           ...state,
@@ -78,9 +79,7 @@ const handlers: Handler<State, ActionPeople> = {
             results: [...(state.pageData ? state.pageData.results : []), action.payload],
           },
         }
-      : {
-          pageData: state.pageData,
-        }, */
+      : state,
 
   DEFAULT: (state) => state,
 };
