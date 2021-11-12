@@ -1,8 +1,6 @@
-import { all } from "@redux-saga/core/effects";
-import { loadPeopleList } from "./loadPeopleList";
+import { all, fork } from "@redux-saga/core/effects";
+import { watchRequestPeople } from "./watchRequestPeople";
 
 export function* peopleRootSaga() {
-  const sagas = [loadPeopleList];
-
-  yield all(sagas);
+  yield all([fork(watchRequestPeople)]);
 }
