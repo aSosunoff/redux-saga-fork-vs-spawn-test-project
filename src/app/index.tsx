@@ -14,7 +14,7 @@ export const App: React.FC = () => {
 
   const { dispatchPeopleAdd } = useDispatchPeopleAdd();
 
-  const { pageData, page, pageSize, loading, search } = useSelector(selectorPeople);
+  const { pageData, loading } = useSelector(selectorPeople);
 
   return (
     <>
