@@ -4,22 +4,10 @@ import { PagesType } from "../../app/interfaces/page-type";
 import { Person } from "../../app/interfaces/person";
 import { CreateReducer, Handler } from "../../app/redux/reducers/helpers";
 
-import {
-  ActionPeoleFailure,
-  ActionPeople,
-  ActionPeopleRequest,
-  ActionPeopleSuccess,
-  PEOPLE_ADD,
-  PEOPLE_DELETE,
-  PEOPLE_FAILURE,
-  PEOPLE_REQUEST,
-  PEOPLE_SUCCESS,
-} from "./action";
+import { ActionPeople, PEOPLE_FAILURE, PEOPLE_REQUEST, PEOPLE_SUCCESS } from "./action";
 
 type State = {
   pageData: PagesType<Person> | null;
-  newPerson: Person | null;
-  deletePerson: Person | null;
   page: number;
   pageSize: number;
   search: string;
@@ -31,8 +19,6 @@ type State = {
 
 const initialState: State = {
   pageData: null,
-  newPerson: null,
-  deletePerson: null,
   page: 1,
   pageSize: 10,
   search: "",
@@ -60,20 +46,8 @@ const handlers: Handler<State, ActionPeople> = {
     pageData: action.payload,
   }),
 
-  [PEOPLE_DELETE]: (state, action) => ({
-    ...state,
-    deletePerson: action.payload,
-  }),
-
-  [PEOPLE_ADD]: (state, action) => ({
-    ...state,
-    newPerson: action.payload,
-  }),
-
   DEFAULT: (state) => state,
 };
 
-export const peopleReducer: Reducer<
-  State,
-  ActionPeopleRequest | ActionPeopleSuccess | ActionPeoleFailure
-> = (state = initialState, action) => CreateReducer(handlers, state, action);
+export const peopleReducer: Reducer<State, any> = (state = initialState, action) =>
+  CreateReducer(handlers, state, action);
