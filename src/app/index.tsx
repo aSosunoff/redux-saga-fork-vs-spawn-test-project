@@ -50,7 +50,7 @@ export const App: React.FC = () => {
               <span>&nbsp;</span>
               <button
                 onClick={() => {
-                  dispatchPeopleDelete(people);
+                  dispatchPeopleDelete(people.url);
                 }}
               >
                 x
