@@ -1,13 +1,12 @@
 import { Action } from "redux";
 
-export type ActionPayload<T extends string, P extends any> = Action<T> & {
-  payload: P;
-};
+export type ActionPayload<T extends string, P extends any = void> = P extends void
+  ? Action<T>
+  : Action<T> & {
+      payload: P;
+    };
 
-export type CreateAction<
-  T extends Record<string, any>,
-  K extends keyof T
-> = Action<K> & T[K];
+export type CreateAction<T extends Record<string, any>, K extends keyof T> = Action<K> & T[K];
 
 export type Handler<
   TState,
