@@ -16,8 +16,6 @@ import { selectorPeople } from "../selectors/selector-people";
 } */
 
 export function* watchAddPeople() {
-  /* yield takeEvery<ActionPeoleAdd>(PEOPLE_ADD, addPerson); */
-
   while (true) {
     /* ADD */
     const { payload: newPerson }: ActionPeoleAdd = yield take<ActionPeoleAdd>(PEOPLE_ADD);
@@ -35,9 +33,7 @@ export function* watchAddPeople() {
     }
 
     /* DELETE */
-    const { payload: deletePerson }: ActionPeoleDelete = yield take<ActionPeoleDelete>(
-      PEOPLE_DELETE
-    );
+    yield take<ActionPeoleDelete>(PEOPLE_DELETE(newPerson.url));
 
     const { pageData: deletePageData }: StateRoot["people"] = yield select(selectorPeople);
 
@@ -47,7 +43,7 @@ export function* watchAddPeople() {
         payload: {
           ...deletePageData,
           results: deletePageData.results.filter(
-            ({ url }) => getIdFromUrl(url) !== getIdFromUrl(deletePerson.url)
+            ({ url }) => getIdFromUrl(url) !== getIdFromUrl(newPerson.url)
           ),
         },
       });
