@@ -18,6 +18,10 @@ export const PEOPLE_DELETE = "PEOPLE_DELETE";
 export type dispatchPeopleDelete = typeof PEOPLE_DELETE;
 export type ActionPeoleDelete = CreateAction<ActionPeople, dispatchPeopleDelete>;
 
+export const PEOPLE_ADD = "PEOPLE_ADD";
+export type dispatchPeopleAdd = typeof PEOPLE_ADD;
+export type ActionPeoleAdd = CreateAction<ActionPeople, dispatchPeopleAdd>;
+
 export type ActionPeople = {
   [PEOPLE_REQUEST]: {
     payload: {
@@ -31,14 +35,6 @@ export type ActionPeople = {
   [PEOPLE_FAILURE]: { payload: any };
 
   [PEOPLE_DELETE]: { payload: Person };
+
+  [PEOPLE_ADD]: { payload: Person };
 };
-
-/* type ActionPeople = {
-  SET_PEOPLE: { payload: PagesType<Person> };
-  ADD_PEOPLE: { payload: Person };
-  
-}; */
-
-/* export type ActionSetPeople = CreateAction<ActionPeople, "SET_PEOPLE">;
-export type ActionAddPeople = CreateAction<ActionPeople, "ADD_PEOPLE">;
-export type ActionDeletePeople = CreateAction<ActionPeople, "DELETE_PEOPLE">; */
