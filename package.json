@@ -42,7 +42,9 @@
   },
   "devDependencies": {
     "@types/react-router": "^5.1.17",
+    "@types/uuid": "^8.3.1",
     "react-router": "^5.2.1",
-    "ts-node": "^10.3.0"
+    "ts-node": "^10.3.0",
+    "uuid": "^8.3.2"
   }
 }
