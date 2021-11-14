@@ -3,9 +3,9 @@ import { PagesType } from "../../../app/interfaces/page-type";
 import { Person } from "../../../app/interfaces/person";
 import { SWAPIService } from "../../../app/services/SWAPIService";
 import { ActionPeopleRequest } from "../action";
-import { deletePerson } from "./delete-person";
-import { peopleFailure } from "./helper-store/store/peopleFailure";
-import { peopleSuccess } from "./helper-store/store/peopleSuccess";
+import { deletePerson } from "./helper/delete-person";
+import { peopleFailure } from "./helper/store/peopleFailure";
+import { peopleSuccess } from "./helper/store/peopleSuccess";
 
 export function* loadPeopleList({ payload: { page, search } }: ActionPeopleRequest) {
   try {
