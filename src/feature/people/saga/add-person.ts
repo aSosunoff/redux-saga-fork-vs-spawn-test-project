@@ -5,14 +5,14 @@ import { ActionPeopleSuccess, PEOPLE_SUCCESS } from "../action";
 import { selectorPeople } from "../selectors/selector-people";
 
 export function* addPerson(person: Person) {
-  const { pageData: addPageData }: StateRoot["people"] = yield select(selectorPeople);
+  const { pageData }: StateRoot["people"] = yield select(selectorPeople);
 
-  if (addPageData) {
+  if (pageData) {
     yield put<ActionPeopleSuccess>({
       type: PEOPLE_SUCCESS,
       payload: {
-        ...addPageData,
-        results: [...addPageData.results, person],
+        ...pageData,
+        results: [...pageData.results, person],
       },
     });
 
