@@ -5,23 +5,18 @@ import { SWAPIService } from "../../../app/services/SWAPIService";
 import { ActionPeopleRequest } from "../action";
 import { deletePerson } from "./delete-person";
 import { peopleFailure } from "./helper-store/store/peopleFailure";
-import { peopleRequest } from "./helper-store/store/peopleRequest";
 import { peopleSuccess } from "./helper-store/store/peopleSuccess";
 
-export function* loadPeopleList() {
-  while (true) {
-    try {
-      const { page, search }: ActionPeopleRequest["payload"] = yield call(peopleRequest);
+export function* loadPeopleList({ payload: { page, search } }: ActionPeopleRequest) {
+  try {
+    const pageData: PagesType<Person> = yield call(SWAPIService.getPeople, page, search);
 
-      const pageData: PagesType<Person> = yield call(SWAPIService.getPeople, page, search);
+    yield call(peopleSuccess, pageData);
 
-      yield call(peopleSuccess, pageData);
-
-      for (const person of pageData.results) {
-        yield fork(deletePerson, person.url);
-      }
-    } catch (error: any) {
-      yield call(peopleFailure, error);
+    for (const person of pageData.results) {
+      yield fork(deletePerson, person.url);
     }
+  } catch (error: any) {
+    yield call(peopleFailure, error);
   }
 }
