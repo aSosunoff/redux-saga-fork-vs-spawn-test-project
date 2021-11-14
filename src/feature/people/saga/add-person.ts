@@ -1,10 +1,11 @@
-import { call, select } from "redux-saga/effects";
-import { Person } from "../../../app/interfaces/person";
+import { call, select, fork } from "redux-saga/effects";
 import { StateRoot } from "../../../app/redux/reducers";
+import { ActionPeoleAdd } from "../action";
 import { selectorPeople } from "../selectors/selector-people";
+import { deletePerson } from "./delete-person";
 import { peopleSuccess } from "./helper-store/store/peopleSuccess";
 
-export function* addPerson(person: Person) {
+export function* addPerson({ payload: person }: ActionPeoleAdd) {
   const { pageData }: StateRoot["people"] = yield select(selectorPeople);
 
   if (pageData) {
@@ -13,6 +14,6 @@ export function* addPerson(person: Person) {
       results: [...pageData.results, person],
     });
 
-    return person;
+    yield fork(deletePerson, person.url);
   }
 }
