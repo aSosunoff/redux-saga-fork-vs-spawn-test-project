@@ -1,7 +1,8 @@
-import { all, fork } from "@redux-saga/core/effects";
+import { all } from "redux-saga/effects";
+import { getRetrySagas } from "../../../app/redux/sagas/effectHelper/get-retry-sagas";
 import { watchAddPerson } from "./watchAddPerson";
 import { watchRequestPeople } from "./watchRequestPeople";
 
 export function* peopleRootSaga() {
-  yield all([fork(watchRequestPeople), fork(watchAddPerson)]);
+  yield all(getRetrySagas(watchRequestPeople, watchAddPerson));
 }
