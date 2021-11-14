@@ -1,7 +1,8 @@
 import { all, fork } from "@redux-saga/core/effects";
-import { watchAddPeople } from "./watchAddPeople";
+import { loadPeopleList } from "./loadPeopleList";
+import { watchAddPerson } from "./watchAddPerson";
 import { watchRequestPeople } from "./watchRequestPeople";
 
 export function* peopleRootSaga() {
-  yield all([fork(watchRequestPeople), fork(watchAddPeople)]);
+  yield all([fork(loadPeopleList), fork(watchAddPerson)]);
 }
