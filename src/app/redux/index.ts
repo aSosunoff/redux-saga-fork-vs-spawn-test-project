@@ -11,13 +11,14 @@ export const configureStore = () => {
       /* actionDispatched: (action) => {
         console.log(action);
       }, */
-
       /* rootSagaStarted: (...arg) => {
         console.log("arg", arg);
       }, */
-
       /* effectTriggered: (...arg) => {
         console.log(arg);
+      }, */
+      /* effectRejected: (effectId: number, error: any) => {
+        console.log(effectId, error);
       }, */
     },
   });
